@@ -69,7 +69,7 @@ export default function Signup() {
   };
 
   const handleGoogle = async () => {
-    window.location.href = 'http://localhost:5000/auth/google';
+    window.location.href = '${import.meta.env.VITE_BACKEND_URL}/auth/google';
   };
 
   return (

@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API = axios.create({ baseURL: 'https://my-note-backend-05bf.onrender.com' });
+const API = axios.create({ baseURL:  import.meta.env.VITE_BACKEND_URL });
 
 API.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
