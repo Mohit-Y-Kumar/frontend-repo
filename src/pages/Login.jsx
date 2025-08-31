@@ -23,27 +23,22 @@ export default function Login() {
       setLoading(true);
 
       if (!otpSent) {
-        // Request OTP
         await API.post("/auth/request-otp", { email: data.email });
         localStorage.setItem("pendingEmail", data.email);
         setOtpSent(true);
       } else {
-        // Verify OTP
         const pendingEmail = localStorage.getItem("pendingEmail");
         const res = await API.post("/auth/verify-otp", {
           email: pendingEmail,
           otp: data.otp,
         });
 
-        // Save token & user
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
 
-        // Update context so App knows user is logged in
         setUser(res.data.user);
         setIsLoggedIn(true);
 
-        // Optional: remember me
         if (data.remember) {
           localStorage.setItem("remember", "true");
         }
@@ -71,10 +66,8 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen">
-      {/* Left side - Form */}
       <div className="flex flex-1 px-4 py-18 md:items-center md:justify-center">
         <div className="w-full max-w-md">
-          {/* Mobile Header */}
           <div className="w-full h-[44px] flex justify-between items-center px-4 bg-white fixed top-0 left-0 z-50 md:static md:bg-transparent md:hidden">
             <span className="px-4 font-medium text-gray-900">  <Clock /></span>
           
@@ -85,7 +78,6 @@ export default function Login() {
             </div>
           </div>
 
-          {/* Logo */}
           <div className="mb-8">
             <div className="md:hidden flex items-center justify-center w-full">
               <img src="/top.jpg" alt="Logo" className="h-12 object-contain" />
@@ -102,9 +94,7 @@ export default function Login() {
             Please login to continue to your account
           </p>
 
-          {/* Form */}
           <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
-            {/* Email */}
             <fieldset className="border border-gray-300 rounded-lg p-2">
               <legend className="block text-sm font-medium text-gray-700">Email</legend>
               <input
@@ -116,7 +106,6 @@ export default function Login() {
             </fieldset>
             {errors.email && <small className="text-red-500 text-sm">{errors.email.message}</small>}
 
-            {/* OTP */}
             {otpSent && (
               <div>
                 <fieldset className="border border-gray-300 rounded-lg p-2">
@@ -138,7 +127,6 @@ export default function Login() {
               </div>
             )}
 
-            {/* Keep me logged in */}
             {otpSent && (
               <div className="flex items-center space-x-2">
                 <input
@@ -153,7 +141,6 @@ export default function Login() {
               </div>
             )}
 
-            {/* Submit button */}
             <button
               type="submit"
               disabled={loading}
@@ -163,7 +150,6 @@ export default function Login() {
             </button>
           </form>
 
-          {/* Sign up link */}
           <p className="text-center text-sm text-gray-600 mt-4">
             Need an account?{" "}
             <a href="/signup" className="text-blue-600 underline font-medium">
@@ -173,7 +159,6 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Right side - Image */}
       <div
         className="hidden md:flex flex-1 bg-cover bg-center"
         style={{ backgroundImage: "url('/container.png')" }}
