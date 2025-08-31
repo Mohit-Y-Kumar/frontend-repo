@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Eye, EyeOff } from "lucide-react"; // lucide icons
+import { Eye, EyeOff } from "lucide-react"; 
 
 const OtpInput = ({ value, onChange, length = 6, placeholder = "Enter OTP" }) => {
   const [showOtp, setShowOtp] = useState(false);
