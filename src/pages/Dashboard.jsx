@@ -3,6 +3,8 @@ import API from '../api/api';
 import { AuthContext } from '../App';
 import {  WifiIcon, SignalIcon, LucideBatteryFull } from "lucide-react";
 import Clock from '../components/Clock';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
@@ -11,6 +13,7 @@ export default function Dashboard() {
   const [content, setContent] = useState('');
   const [message, setMessage] = useState('');
   const [showForm, setShowForm] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchNotes = async () => {
@@ -54,7 +57,7 @@ export default function Dashboard() {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    window.location.href = '/login';
+     navigate('/login', { replace: true })
   };
 
   return (
