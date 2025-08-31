@@ -30,18 +30,16 @@ export default function Signup() {
       }
 
       if (!otpSent) {
-        // Request OTP
         await API.post('/auth/request-otp', { email: data.email });
         localStorage.setItem('pendingEmail', data.email);
         setOtpSent(true);
       } else {
-        // Verify OTP
         const pendingEmail = localStorage.getItem('pendingEmail');
         const res = await API.post('/auth/verify-otp', {
           email: pendingEmail,
           otp: data.otp,
           name: data.name,
-          dob: data.dob // send dob to backend
+          dob: data.dob 
         });
 
         if (!res.data.token) {
@@ -79,7 +77,6 @@ export default function Signup() {
       <div className="flex flex-1 flex-col items-center justify-start md:justify-center min-h-screen px-4 py-6 md:px-0 md:py-0">
         <div className="w-full max-w-md md:max-w-sm lg:max-w-md xl:max-w-lg bg-white">
 
-          {/* Mobile Header */}
           <div className="w-full h-[44px] flex justify-between items-center px-4 bg-white fixed top-0 left-0 z-50 md:static md:bg-transparent md:hidden">
             <span className="text-[14px] px-3 font-medium text-gray-900">  <Clock /></span>
             <div className="flex items-center space-x-2">
@@ -89,7 +86,6 @@ export default function Signup() {
             </div>
           </div>
 
-          {/* Logo */}
           <div className="mb-8">
             <div className="md:hidden flex items-center justify-center mt-8 mb-8 w-full">
               <img src="/top.jpg" alt="Logo" className="h-12 object-contain" />
@@ -106,10 +102,8 @@ export default function Signup() {
             Sign Up and enjoy the feature of HD
           </p>
 
-          {/* Form */}
           <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
 
-            {/* Name */}
             <fieldset className="border border-gray-300 rounded-lg p-2">
               <legend className="text-sm font-medium text-gray-700">Name</legend>
               <input
@@ -120,7 +114,6 @@ export default function Signup() {
             </fieldset>
             {errors.name && <small className="text-red-500 text-sm">Name is required</small>}
 
-            {/* Date of Birth */}
             <fieldset className="border border-gray-300 rounded-lg p-2">
               <legend className="block text-sm font-medium text-gray-700">Date of Birth</legend>
               <div className="relative ml-0">
@@ -139,7 +132,6 @@ export default function Signup() {
             </fieldset>
             {errors.dob && <small className="text-red-500 text-sm">DOB is required</small>}
 
-            {/* Email */}
             <fieldset className="border border-gray-300 rounded-lg p-2">
               <legend className="block text-sm font-medium text-gray-700">Email</legend>
               <input
@@ -157,7 +149,6 @@ export default function Signup() {
             </fieldset>
             {errors.email && <small className="text-red-500 text-sm">Valid email required</small>}
 
-            {/* OTP */}
             {otpSent && (
               <fieldset className="border border-gray-300 rounded-lg p-2">
                 <OtpInput
@@ -180,7 +171,6 @@ export default function Signup() {
             </button>
           </form>
 
-          {/* OR separator */}
           <div className="flex items-center gap-2 my-6">
             <div className="h-px flex-1 bg-gray-300"></div>
             <span className="text-sm text-gray-400">OR</span>
