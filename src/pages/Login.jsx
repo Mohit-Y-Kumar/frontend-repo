@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import API from "../api/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 import OtpInput from "../components/OtpInput";
 import { LucideBatteryFull, SignalIcon, WifiIcon } from "lucide-react";
 import { AuthContext } from "../App";
@@ -70,7 +71,7 @@ export default function Login() {
         <div className="w-full max-w-md">
           <div className="w-full h-[44px] flex justify-between items-center px-4 bg-white fixed top-0 left-0 z-50 md:static md:bg-transparent md:hidden">
             <span className="px-4 font-medium text-gray-900">  <Clock /></span>
-          
+
             <div className="flex items-center space-x-2">
               <SignalIcon className="w-5 h-5" />
               <WifiIcon className="w-5 h-5" />
@@ -152,9 +153,9 @@ export default function Login() {
 
           <p className="text-center text-sm text-gray-600 mt-4">
             Need an account?{" "}
-            <a href="/signup" className="text-blue-600 underline font-medium">
+            <Link to="/signup" className="text-blue-600 underline font-medium">
               Create one
-            </a>
+            </Link>
           </p>
         </div>
       </div>
