@@ -26,7 +26,7 @@ export default function Dashboard() {
 
   const createNote = async () => {
     if (!title.trim() || !content.trim()) {
-      setMessage("⚠️ Title and content cannot be empty");
+      setMessage(" Title and content cannot be empty");
       return;
     }
     try {
@@ -34,10 +34,10 @@ export default function Dashboard() {
       setNotes(prev => [res.data, ...prev]);
       setTitle('');
       setContent('');
-      setMessage("✅ Note created successfully!");
+      setMessage(" Note created successfully!");
       setShowForm(false);
     } catch (err) {
-      setMessage(err.response?.data?.error || '❌ Create note failed');
+      setMessage(err.response?.data?.error || ' Create note failed');
     }
   };
 
@@ -84,9 +84,7 @@ export default function Dashboard() {
         </div>
       </header>
 
-      {/* Main */}
       <main className="max-w-md mx-auto px-4 py-6 space-y-6">
-        {/* User Info */}
         <div className="w-full p-4 bg-white border border-[#D9D9D9] rounded-[10px] shadow-[0px_2px_6px_rgba(0,0,0,0.59)]">
           <h1 className="text-lg font-extrabold mb-2">
             Welcome, {user?.name}
@@ -94,7 +92,6 @@ export default function Dashboard() {
           <p className="text-base">Email: {user?.email}</p>
         </div>
 
-        {/* Create Note Button */}
         <button
           onClick={() => setShowForm(!showForm)}
           className="w-full h-[52px] bg-blue-500 text-white text-base font-semibold rounded-[10px] hover:bg-blue-700 transition"
@@ -102,7 +99,6 @@ export default function Dashboard() {
           {showForm ? "Cancel" : "Create Note"}
         </button>
 
-        {/* Form */}
         {showForm && (
           <div className="w-full p-4 bg-white border rounded-lg shadow space-y-3">
             <h2 className="text-lg font-semibold">Create a Note</h2>
@@ -131,7 +127,6 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* Notes List */}
         <div>
           <h2 className="font-medium text-[20px] mb-3 text-gray-900">Notes</h2>
           <div className="space-y-3">
