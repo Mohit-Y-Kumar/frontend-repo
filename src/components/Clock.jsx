@@ -1,4 +1,3 @@
-// Clock.jsx
 import React, { useState, useEffect } from "react";
 
 export default function Clock({ className = "" }) {
@@ -12,10 +11,10 @@ export default function Clock({ className = "" }) {
       setTime(`${hours}:${minutes}`);
     };
 
-    updateTime(); // set initial time
-    const interval = setInterval(updateTime, 60000); // update every minute
+    updateTime(); 
+    const interval = setInterval(updateTime, 60000); 
 
-    return () => clearInterval(interval); // cleanup
+    return () => clearInterval(interval); 
   }, []);
 
   return <span className={` ${className}`}>{time}</span>;
